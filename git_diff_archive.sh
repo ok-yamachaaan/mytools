@@ -1,5 +1,6 @@
 function git_diff_archive() 
 {
+    dateTime=`date '+%Y%m%d%H%M'`
     local diff=""
     local h="HEAD"
     if [ $# -eq 1 ]; then
@@ -15,5 +16,5 @@ function git_diff_archive()
     if [ "$diff" != "" ]; then
         diff="git diff --name-only ${diff}"
     fi
-    git archive --format=zip --prefix=root/ $h `eval $diff` -o archive.zip
+    git archive --format=zip $h `eval $diff` -o ${PWD##*/}-$dateTime.zip
 }
